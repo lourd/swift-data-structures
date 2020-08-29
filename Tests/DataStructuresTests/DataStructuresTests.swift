@@ -45,7 +45,7 @@ let t = Tree(Node(2, children: [Node(1), Node(3)]))
 
 let t2 = Tree(Node(1, children: [Node(2), Node(3), Node(4)]))
 
-var t3 = Tree(
+let t3 = Tree(
   Node(
     5,
     children: [
