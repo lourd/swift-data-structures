@@ -41,19 +41,35 @@ final class DataStructuresTests: XCTestCase {
 //  TEST FIXTURES
 //
 
-let t = Tree(Node(2, children: [Node(1), Node(3)]))
+let t = Tree(
+  Node(
+    2,
+    Node(1),
+    Node(3)
+  )
+)
 
-let t2 = Tree(Node(1, children: [Node(2), Node(3), Node(4)]))
+let t2 = Tree(
+  Node(
+    1,
+    Node(2),
+    Node(3),
+    Node(4)
+  )
+)
 
 let t3 = Tree(
   Node(
     5,
-    children: [
-      Node(
-        3,
-        children: [Node(2), Node(4)]),
-      Node(
-        7,
-        children: [Node(6), Node(8)]),
-    ])
+    Node(
+      3,
+      Node(2),
+      Node(4)
+    ),
+    Node(
+      7,
+      Node(6),
+      Node(8)
+    )
+  )
 )
