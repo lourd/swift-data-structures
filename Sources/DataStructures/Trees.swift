@@ -6,7 +6,7 @@ class Node<T: Comparable> {
   var value: T
   var children: [Node<T>]
 
-  init(_ value: T, children: [Node<T>] = []) {
+  init(_ value: T, _ children: Node<T>...) {
     self.value = value
     self.children = children
   }
