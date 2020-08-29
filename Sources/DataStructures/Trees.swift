@@ -84,11 +84,15 @@ func isBalancedBinarySearchTree<T>(_ tree: Tree<T>) -> Bool {
 }
 
 func getHeight<T>(_ tree: Tree<T>) -> Int {
-  return 0
+  return getHeight(tree.root)
 }
 
 func getHeight<T>(_ node: Node<T>?) -> Int {
-  return 0
+  guard let node = node else {
+    return 0
+  }
+  let maxChildHeight = node.children.map(getHeight).max() ?? 0
+  return 1 + maxChildHeight
 }
 
 func balance<T>(_ tree: Tree<T>) {
