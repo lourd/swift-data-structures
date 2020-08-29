@@ -16,6 +16,15 @@ final class DataStructuresTests: XCTestCase {
     XCTAssertFalse(isBinarySearchTree(Tree<Int>()))
   }
 
+  func testGetHeight() {
+    XCTAssertEqual(getHeight(t), 2)
+    XCTAssertEqual(getHeight(t2), 2)
+    XCTAssertEqual(getHeight(t3), 3)
+    XCTAssertEqual(getHeight(t4), 2)
+    XCTAssertEqual(getHeight(Tree<Int>()), 0)
+    XCTAssertEqual(getHeight(t5), 5)
+  }
+
   func testBreadthFirstTraversal() {
     let expectation = [5, 3, 7, 2, 4, 6, 8]
     var reality: [Int] = []
@@ -87,5 +96,19 @@ let t4 = Tree(
     2,
     Node(3),
     Node(1)
+  )
+)
+
+let t5 = Tree(
+  Node(
+    1,
+    Node(
+      2,
+      Node(
+        3,
+        Node(
+          4,
+          Node(5)))),
+    Node(6)
   )
 )
