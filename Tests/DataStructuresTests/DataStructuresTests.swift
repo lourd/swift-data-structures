@@ -8,6 +8,14 @@ final class DataStructuresTests: XCTestCase {
     XCTAssertFalse(isBinaryTree(t2))
   }
 
+  func testIsBinarySearchTree() {
+    XCTAssertTrue(isBinarySearchTree(t))
+    XCTAssertFalse(isBinarySearchTree(t2))
+    XCTAssertTrue(isBinarySearchTree(t3))
+    XCTAssertFalse(isBinarySearchTree(t4))
+    XCTAssertFalse(isBinarySearchTree(Tree<Int>()))
+  }
+
   func testBreadthFirstTraversal() {
     let expectation = [5, 3, 7, 2, 4, 6, 8]
     var reality: [Int] = []
@@ -71,5 +79,13 @@ let t3 = Tree(
       Node(6),
       Node(8)
     )
+  )
+)
+
+let t4 = Tree(
+  Node(
+    2,
+    Node(3),
+    Node(1)
   )
 )
