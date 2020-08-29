@@ -59,6 +59,14 @@ func isBalancedBinarySearchTree<T>(_ tree: Tree<T>) -> Bool {
   return false
 }
 
+func getHeight<T>(_ tree: Tree<T>) -> Int {
+  return 0
+}
+
+func getHeight<T>(_ node: Node<T>?) -> Int {
+  return 0
+}
+
 func balance<T>(_ tree: Tree<T>) {
 
 }
