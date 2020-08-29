@@ -52,7 +52,31 @@ func isBinaryTree<T>(_ tree: Tree<T>) -> Bool {
 }
 
 func isBinarySearchTree<T>(_ tree: Tree<T>) -> Bool {
-  return false
+  if tree.root == nil {
+    return false
+  }
+  func isBinarySearchTree<T>(_ node: Node<T>?) -> Bool {
+    guard let node = node else {
+      return true
+    }
+    if node.children.count > 2 {
+      return false
+    }
+    let leftChild = node.children[safe: 0]
+    if let leftChild = leftChild {
+      if !(leftChild.value < node.value) {
+        return false
+      }
+    }
+    let rightChild = node.children[safe: 1]
+    if let rightChild = rightChild {
+      if !(rightChild.value > node.value) {
+        return false
+      }
+    }
+    return isBinarySearchTree(leftChild) && isBinarySearchTree(rightChild)
+  }
+  return isBinarySearchTree(tree.root)
 }
 
 func isBalancedBinarySearchTree<T>(_ tree: Tree<T>) -> Bool {
