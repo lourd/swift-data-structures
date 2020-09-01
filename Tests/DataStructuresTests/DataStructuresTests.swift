@@ -81,52 +81,6 @@ final class DataStructuresTests: XCTestCase {
     XCTAssertEqual(reality, expectation)
   }
 
-  func testTreeToVine() {
-    let tree = Tree(
-      Node(
-        5,
-        Node(
-          3,
-          Node(2),
-          Node(4)
-        ),
-        Node(
-          7,
-          Node(6),
-          Node(8)
-        )
-      )
-    )
-    XCTAssertEqual(treeToVine(tree), rightChildTree)
-  }
-
-  func testVineToTree() {
-    let tree = Tree(
-      Node(
-        2,
-        nil,
-        Node(
-          3,
-          nil,
-          Node(
-            4,
-            nil,
-            Node(
-              5,
-              nil,
-              Node(
-                6,
-                nil,
-                Node(
-                  7,
-                  nil,
-                  Node(8)))))))
-    )
-    XCTAssertEqual(vineToTree(tree), balancedRightChildTree)
-    XCTAssertEqual(vineToTree(Tree(Node(1))), Tree(Node(1)))
-    XCTAssertEqual(vineToTree(Tree(Node(1, nil, Node(2)))), Tree(Node(1, nil, Node(2))))
-  }
-
   func testBalanceBinarySearchTree() {
     let tree = Tree(
       Node(
