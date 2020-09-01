@@ -66,6 +66,14 @@ func getHeight<T>(_ node: Node<T>?) -> Int {
   return 0
 }
 
+func getNodeCount<T>(_ tree: Tree<T>) -> Int {
+  return 0
+}
+
+func getNodeCount<T>(_ node: Node<T>?) -> Int {
+  return 0
+}
+
 func balance<T>(_ tree: Tree<T>) {
 
 }
@@ -88,4 +96,8 @@ func depthFirstPostOrderTraversal<T>(_ tree: Tree<T>, _ visit: ((T) -> Void)) {
 
 func prettyTreeString<T>(_ tree: Tree<T>) -> String {
   return ""
+}
+
+@discardableResult func balanceBinarySearchTree<T>(_ tree: Tree<T>) -> Tree<T> {
+  return tree
 }
