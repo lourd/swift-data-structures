@@ -268,7 +268,7 @@ func rotateRight<T>(_ node: Node<T>) -> Node<T> {
     return tree
   }
   guard balanceFactor > 2 else {
-    // Only off balance by insertion, do some rotations to re-balance
+    // Only off balance by one insertion, do some rotations to re-balance
     tree.root = oneOffBalance(root)
     return tree
   }
