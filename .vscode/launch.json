@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug tests on macOS",
+      "type": "lldb",
+      "request": "launch",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [
+        "${workspaceFolder}/.build/debug/DataStructuresPackageTests.xctest"
+      ],
+      "preLaunchTask": "swift-build-tests",
+      "sourceLanguages": [
+        "swift"
+      ]
+    },
+  ]
+}

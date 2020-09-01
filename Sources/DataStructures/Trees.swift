@@ -2,28 +2,43 @@
 //  DATA STRUCTURES
 //
 
-class Node<T: Comparable> {
+class Node<T: Comparable>: Equatable {
   var value: T
-  var children: [Node<T>]
+  var children: [Int: Node<T>] = [:]
 
-  init(_ value: T, _ children: Node<T>...) {
+  init(_ value: T, _ children: Node<T>?...) {
     self.value = value
-    self.children = children
+    for i in 0..<children.count {
+      guard let child = children[i] else {
+        continue
+      }
+      self.children[i] = child
+    }
+  }
+
+  var leftChild: Node<T>? {
+    get { return self.children[0] }
+    set { self.children[0] = newValue }
+  }
+
+  var rightChild: Node<T>? {
+    get { return self.children[1] }
+    set { self.children[1] = newValue }
+  }
+
+  static func == (lhs: Node<T>, rhs: Node<T>) -> Bool {
+    return lhs.value == rhs.value && lhs.children == rhs.children
   }
 }
 
-class Tree<T: Comparable> {
+class Tree<T: Comparable>: Equatable {
+  static func == (lhs: Tree<T>, rhs: Tree<T>) -> Bool {
+    return lhs.root == rhs.root
+  }
+
   var root: Node<T>?
   init(_ root: Node<T>? = nil) {
     self.root = root
-  }
-}
-
-// Adds a way of succinct way to get a value in an array without accidentally
-// going out of bounds.
-extension Collection where Indices.Iterator.Element == Index {
-  public subscript(safe index: Index) -> Iterator.Element? {
-    return (startIndex <= index && index < endIndex) ? self[index] : nil
   }
 }
 

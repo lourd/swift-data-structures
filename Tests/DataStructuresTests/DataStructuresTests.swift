@@ -3,6 +3,13 @@ import XCTest
 @testable import DataStructures
 
 final class DataStructuresTests: XCTestCase {
+  func testTreeEquality() {
+    XCTAssertEqual(Tree<Int>(), Tree<Int>())
+    XCTAssertEqual(Tree(Node(2)), Tree(Node(2)))
+    XCTAssertNotEqual(Tree(Node(2)), Tree(Node(3)))
+    XCTAssertNotEqual(Tree(Node(2)), Tree(Node(2, Node(3))))
+  }
+
   func testIsBinaryTree() {
     XCTAssertTrue(isBinaryTree(t))
     XCTAssertFalse(isBinaryTree(t2))
@@ -14,6 +21,16 @@ final class DataStructuresTests: XCTestCase {
     XCTAssertTrue(isBinarySearchTree(t3))
     XCTAssertFalse(isBinarySearchTree(t4))
     XCTAssertFalse(isBinarySearchTree(Tree<Int>()))
+    XCTAssertTrue(isBinarySearchTree(t6))
+  }
+
+  func testIsBalancedBinarySearchTree() {
+    XCTAssertTrue(isBalancedBinarySearchTree(t))
+    XCTAssertFalse(isBalancedBinarySearchTree(t2))
+    XCTAssertTrue(isBalancedBinarySearchTree(t3))
+    XCTAssertFalse(isBalancedBinarySearchTree(t4))
+    XCTAssertFalse(isBalancedBinarySearchTree(Tree<Int>()))
+    XCTAssertFalse(isBalancedBinarySearchTree(t6))
   }
 
   func testGetHeight() {
@@ -23,6 +40,17 @@ final class DataStructuresTests: XCTestCase {
     XCTAssertEqual(getHeight(t4), 2)
     XCTAssertEqual(getHeight(Tree<Int>()), 0)
     XCTAssertEqual(getHeight(t5), 5)
+    XCTAssertEqual(getHeight(t6), 3)
+  }
+
+  func testGetNodeCount() {
+    XCTAssertEqual(getNodeCount(t), 3)
+    XCTAssertEqual(getNodeCount(t2), 4)
+    XCTAssertEqual(getNodeCount(t3), 7)
+    XCTAssertEqual(getNodeCount(t4), 3)
+    XCTAssertEqual(getNodeCount(Tree<Int>()), 0)
+    XCTAssertEqual(getNodeCount(t5), 6)
+    XCTAssertEqual(getNodeCount(t6), 3)
   }
 
   func testBreadthFirstTraversal() {
@@ -51,6 +79,105 @@ final class DataStructuresTests: XCTestCase {
     var reality: [Int] = []
     depthFirstPostOrderTraversal(t3, { value in reality.append(value) })
     XCTAssertEqual(reality, expectation)
+  }
+
+  func testTreeToVine() {
+    let tree = Tree(
+      Node(
+        5,
+        Node(
+          3,
+          Node(2),
+          Node(4)
+        ),
+        Node(
+          7,
+          Node(6),
+          Node(8)
+        )
+      )
+    )
+    XCTAssertEqual(treeToVine(tree), rightChildTree)
+  }
+
+  func testVineToTree() {
+    let tree = Tree(
+      Node(
+        2,
+        nil,
+        Node(
+          3,
+          nil,
+          Node(
+            4,
+            nil,
+            Node(
+              5,
+              nil,
+              Node(
+                6,
+                nil,
+                Node(
+                  7,
+                  nil,
+                  Node(8)))))))
+    )
+    XCTAssertEqual(vineToTree(tree), balancedRightChildTree)
+    XCTAssertEqual(vineToTree(Tree(Node(1))), Tree(Node(1)))
+    XCTAssertEqual(vineToTree(Tree(Node(1, nil, Node(2)))), Tree(Node(1, nil, Node(2))))
+  }
+
+  func testBalanceBinarySearchTree() {
+    let tree = Tree(
+      Node(
+        1,
+        nil,
+        Node(
+          2,
+          nil,
+          Node(3)))
+    )
+    XCTAssertEqual(balanceBinarySearchTree(tree), t)
+
+    let tree2 = Tree(
+      Node(
+        5,
+        Node(
+          1,
+          Node(0),
+          Node(
+            3,
+            nil,
+            Node(4)
+          )
+        ),
+        Node(7)
+      )
+    )
+    XCTAssertEqual(balanceBinarySearchTree(tree2), t7)
+
+    let rightChildChain = Tree(
+      Node(
+        2,
+        nil,
+        Node(
+          3,
+          nil,
+          Node(
+            4,
+            nil,
+            Node(
+              5,
+              nil,
+              Node(
+                6,
+                nil,
+                Node(
+                  7,
+                  nil,
+                  Node(8)))))))
+    )
+    XCTAssertEqual(balanceBinarySearchTree(rightChildChain), balancedRightChildTree)
   }
 }
 
@@ -110,5 +237,68 @@ let t5 = Tree(
           4,
           Node(5)))),
     Node(6)
+  )
+)
+
+let t6 = Tree(
+  Node(
+    1,
+    nil,
+    Node(
+      2,
+      nil,
+      Node(3)))
+)
+
+let t7 = Tree(
+  Node(
+    3,
+    Node(
+      1,
+      Node(0)
+    ),
+    Node(
+      5,
+      Node(4),
+      Node(7)
+    )
+  )
+)
+
+let rightChildTree = Tree(
+  Node(
+    2,
+    nil,
+    Node(
+      3,
+      nil,
+      Node(
+        4,
+        nil,
+        Node(
+          5,
+          nil,
+          Node(
+            6,
+            nil,
+            Node(
+              7,
+              nil,
+              Node(8)))))))
+)
+
+let balancedRightChildTree = Tree(
+  Node(
+    5,
+    Node(
+      3,
+      Node(2),
+      Node(4)
+    ),
+    Node(
+      7,
+      Node(6),
+      Node(8)
+    )
   )
 )

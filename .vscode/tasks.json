@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // compile source and tests
+    {
+      "label": "swift-build-tests",
+      "type": "process",
+      "group": "build",
+      "command": "swift",
+      "args": [
+        "build",
+        "--build-tests"
+      ]
+    }
+  ]
+}
